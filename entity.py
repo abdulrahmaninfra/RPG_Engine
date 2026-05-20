@@ -21,14 +21,12 @@ class Entity(ABC):
         if random.random() < self.dodge_rate:
             dodged = True
             amount = 0
-            print(f"{self.name} dodged the attack!")
         else:
             if self.is_defending:
                 damage_reduction = 0.50 + (self.level * 0.02)
-                damage_reduction = min(0.90, damage_reduction) 
+                damage_reduction = min(0.90, damage_reduction)
                 amount = max(1, int(amount * (1 - damage_reduction)))
                 blocked = True
-                print(f"{self.name} blocks the attack!")
 
         self.hp -= amount
         return amount, blocked, dodged
